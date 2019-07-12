@@ -1,0 +1,112 @@
+<html>
+<head>
+  <title>Evan Tang</title>
+  <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+  <script src="http://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+  <link rel = "stylesheet" type="text/css" href="jeo.css">
+  <script src = "cbm.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+  <div id = "title" style = "display:block">
+    <img id = "title_image" src="cbm_logo.png" alt="chinese bible mission" />
+    <p id = "smarter">Are You Smarter Than a Junior Higher?</p>
+  </div>
+</div>
+
+<div class="container-fluid" style="margin-top:30px">
+  <div class="col-xs">
+    <div id = "initial" style = "display:block">
+      <button id = "start" type = "button" class = "btn btn-primary btn-block" onclick = "startGame()">Start Game</button>
+      <button id = "about" type = "button" class = "btn btn-primary btn-block" onclick = "about()">About</button>
+    </div>
+    <div id = "total" class = "topborder" style = "display:none">
+      <div class = "row">
+        <div class = "col-sm-6">
+          <h4>Counselors Total:</h4>
+          <p id = "coun_total">0</p>
+        </div>
+        <div class = "col-sm-6">
+          <h4>Campers Total:</h4>
+          <p id = "camp_total">0</p>
+        </div>
+      </div>
+    </div>
+    <div id = "points" style = "display:none">
+      <button id = "oneh" type = "button" class = "btn btn-primary btn-block" onclick = "pointSet(100)">100</button>
+      <button id = "twoh" type = "button" class = "btn btn-primary btn-block" onclick = "pointSet(200)">200</button>
+      <button id = "threeh" type = "button" class = "btn btn-primary btn-block" onclick = "pointSet(300)">300</button>
+      <button id = "fourh" type = "button" class = "btn btn-primary btn-block" onclick = "pointSet(400)">400</button>
+      <button id = "fiveh" type = "button" class = "btn btn-primary btn-block" onclick = "pointSet(500)">500</button>
+      <button id = "finalj" type = "button" class = "btn btn-primary btn-block" onclick = "final()">Final Jeopardy</button>
+      <button id = "manual" type = "button" class = "btn btn-danger btn-block" onclick = "enterMan()">Manual Adjust</button>
+    </div>
+    <div id = "about_page" class = "about" style = "display:none">
+      <p id = "about1">Developed, Designed, and Written by Evan Tang in association with CBM Junior High Camp 2019. For further inquiries, contact e@evantang.com</p><br>
+      <p id = "about2">Designed for mobile web platforms with limited internet access. Please cache webpage prior to leaving internet connectivity.</p><br>
+      <p id = "about3">All Rights Reserved 2019: Evan Tang</p>
+      <button id = "about2main" type = "button" class = "btn btn-danger btn-block" onclick = "resetGameSure()">Return to Main</button>
+    </div>
+    <div id = "manual_page" style = "display:none">
+      <p id = "co_man"> Counselors Total Score: </p>
+        <input class = "enter_num" type="number" id="a_counselors" value = 0>
+      <p id = "ca_man"> Campers Total Score: </p>
+        <input class = "enter_num" type="number" id ="a_campers" value = 0>
+      <button id = "adjust" type = "button" class = "btn btn-primary btn-block" onclick = "manual()">Manual Adjust</button>
+      <button id = "wrong" type = "button" class = "btn btn-danger btn-block" onclick = "exit()">Close</button>
+      <br><br>
+      <button id = "reset" type = "button" class = "btn btn-warning btn-block" onclick = "resetGame()">Reset Game</button>
+    </div>
+    <div id = "final" style = "display:none">
+      <p id = "co_wager"> Counselors Wager: </p>
+        <input class = "enter_num" type="number" id="f_counselors" value = "0">
+      <p id = "ca_wager"> Campers Wager: </p>
+        <input class = "enter_num" type="number" id ="f_campers" value = "0"><br><br>
+      <button id = "finalj2" type = "button" class = "btn btn-primary btn-block" onclick = "finalCorrect()">Final Jeopardy</button>
+      <button id = "wrong2" type = "button" class = "btn btn-danger btn-block" onclick = "exit()">Close</button>
+    </div>
+    <div id = "final_correct" style = "display:none">
+      <p id = "co_correct">Counselors Correct?</p>
+        <button id = "coun_tru" type = "button" class = "btn btn-success btn-lg" onclick = "updateCoun(0)">Yes</button>
+        <button id = "coun_fal" type = "button" class = "btn btn-danger btn-lg" onclick = "updateCoun(1)">No</button>
+      <p id = "ca_correct">Campers Correct?</p>
+        <button id = "camp_tru" type = "button" class = "btn btn-success btn-lg" onclick = "updateCamp(0)">Yes</button>
+        <button id = "camp_fal" type = "button" class = "btn btn-danger btn-lg" onclick = "updateCamp(1)">No</button> <br><br>
+        <button id = "finalj3" type = "button" class = "btn btn-primary btn-block" onclick = "end()">End Game</button>
+    </div>
+    <div id = "timer" style = "display:none">
+        <button id = "time_count" type = "button" class = "btn btn-danger btn-block" onclick = "countDown()">Start Timer</button><br>
+        <button id = "skip_time" type = "button" class = "btn btn-warning btn-block" onclick = "skipTime()">Skip Timer</button>
+        <p id = "giant_num"><p>
+    </div>
+    <div id = "endTime" style = "display:none">
+      <button id = "next_" type = "button" class = "btn btn-primary btn-block" onclick = "skipTime()">Next</button>
+    </div>
+    <div id = "change" style = "display:none">
+      <button id = "coun_add" type = "button" class = "btn btn-success btn-lg" onclick = "addPoints(0)">Counselor</button>
+      <button id = "camp_add" type = "button" class = "btn btn-success btn-lg" onclick = "addPoints(1)">Campers</button>
+      <button id = "coun_rem" type = "button" class = "btn btn-danger btn-lg" onclick = "removePoints(0)">Counselor</button>
+      <button id = "camp_rem" type = "button" class = "btn btn-danger btn-lg" onclick = "removePoints(1)">Campers</button><br><br>
+      <button id = "undo" type = "button" class = "btn btn-warning btn-block" onclick = "undo()">Undo</button>
+      <button id = "done_with" type = "button" class = "btn btn-primary btn-block" onclick = "nextPage()">Done</button>
+    </div>
+    <div id ="final_screen" style = "display:none">
+      <p class = "title" id = "whowon"></p><br>
+      <button id = "reset1" type = "button" class = "btn btn-warning btn-block" onclick = "resetGameSure()">Reset Game</button>
+    </div>
+    <div id ="sure" style = "display:none">
+      <p id = "ques_sure">Are you sure you want reset?</p><br>
+      <button id = "close" type = "button" class = "btn btn-primary btn-block" onclick = "nextPage()">Cancel</button>
+      <button id = "resetsure" type = "button" class = "btn btn-danger btn-block" onclick = "resetGameSure()">Reset Game</button>
+
+    </div>
+  </div>
+  </div>
+
+</div>
+
+</body>
+</html>
